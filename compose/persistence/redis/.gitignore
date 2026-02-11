@@ -1,0 +1,4 @@
+# Ignorar dados dos volumes, mas manter estrutura de diretórios
+*
+!.gitignore
+!*/

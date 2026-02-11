@@ -1,0 +1,46 @@
+{
+  "name": "example_jmt",
+  "version": "1.0.0",
+  "description": "Jest Mock Service examples with Redis, NSQ and Mongoose",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon --inspect=0.0.0.0:9229 src/index.js",
+    "test": "docker run -it --rm -v ./src:/app/src -v ./test:/app/test jmt-example_jmt bash -c 'npm run test_'",
+    "test:dev": "docker run -it --rm -v ./src:/app/src -v ./test:/app/test jmt-example_jmt bash -c 'npm run test_:dev'",
+    "test:devnc": "docker run -it --rm -v ./src:/app/src -v ./test:/app/test jmt-example_jmt bash -c 'npm run test_:devnc'",
+    "test_": "jest --clearCache && jest --colors --detectOpenHandles --passWithNoTests --bail --runInBand --coverage --config=./test/jest.config.js",
+    "test_:dev": "jest --clearCache && jest --bail --runInBand --watchAll --config=./test/jest.config.js",
+    "test_:devnc": "jest --clearCache && jest --bail --runInBand --watchAll --collectCoverage=false --config=./test/jest.config.js",
+    "get_packagelock": "docker run --rm jmt-example_jmt cat /app/package-lock.json > ./package-lock.json"
+  },
+  "keywords": [
+    "jest",
+    "mock",
+    "redis",
+    "nsq",
+    "mongoose",
+    "mongodb"
+  ],
+  "author": "",
+  "license": "MIT",
+  "nodemonConfig": {
+    "ignore": [
+      "**/test/*"
+    ]
+  },
+  "dependencies": {
+    "express": "5.2.x",
+    "ioredis": "5.9.x",
+    "nsqjs": "0.13.x",
+    "mongoose": "9.1.x"
+  },
+  "devDependencies": {
+    "nodemon": "3.1.x",
+    "ioredis-mock": "8.13.x",
+    "jest": "30.2.x",
+    "jest-sonar": "^0.2.16",
+    "mongodb-memory-server": "11.0.x",
+    "supertest": "7.2.x"
+  }
+}
